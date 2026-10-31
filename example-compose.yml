@@ -1,0 +1,26 @@
+services:
+  factorio-init:
+    build:
+      context: .
+      args:
+        FACTORIO_VERSION: "2.1.24"
+    volumes:
+      - ./target/saves:/factorio/saves
+      - ./target/mods:/factorio/mods
+    command: ["--create", "saves/default.zip"]
+    restart: "no"
+
+  factorio:
+    build:
+      context: .
+      args:
+        FACTORIO_VERSION: "2.1.24"
+    depends_on:
+      factorio-init:
+        condition: service_completed_successfully
+    volumes:
+      - ./target/saves:/factorio/saves
+      - ./target/mods:/factorio/mods
+    ports:
+      - "34197:34197/udp"
+    restart: unless-stopped
