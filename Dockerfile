@@ -27,7 +27,7 @@ RUN LOADER="/lib64/ld-linux-x86-64.so.2" \
 
 FROM scratch
 WORKDIR /factorio
-VOLUME ["/factorio/saves", "/factorio/mods", "/factorio/mods/mod-settings.dat", "/factorio/data/server-settings.json", "/factorio/data/server-whitelist.json"]
+VOLUME ["/factorio/saves", "/factorio/mods"]
 EXPOSE 34197/udp
 ENTRYPOINT [ "/factorio/bin/x64/factorio" ]
 CMD [ "--start-server-load-latest" ]

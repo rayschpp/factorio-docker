@@ -9,7 +9,7 @@ Initialize game:
 docker run --rm \
     --volume /opt/factorio/saves:/factorio/saves \
     --volume /opt/factorio/mods:/factorio/mods \
-    --volume /opt/factorio/sever-settings.json:/opt/factorio/sever-settings.json \
+    --volume /opt/factorio/server-settings.json:/factorio/data/server-settings.json \
     --volume /opt/factorio/server-whitelist.json:/factorio/data/server-whitelist.json \
     --volume /opt/factorio/map-gen-settings.json:/factorio/data/map-gen-settings.json \
     --volume /opt/factorio/map-settings.json:/factorio/data/map-settings.json \
