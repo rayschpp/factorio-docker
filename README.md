@@ -7,8 +7,12 @@ Factorio headless server on a minimal scratch Docker image. See https://wiki.fac
 Initialize game:
 ```shell
 docker run --rm \
-    --volume /data/factorio/saves:/factorio/saves \
-    --volume /data/factorio/mods:/factorio/mods \
+    --volume /opt/factorio/saves:/factorio/saves \
+    --volume /opt/factorio/mods:/factorio/mods \
+    --volume /opt/factorio/sever-settings.json:/opt/factorio/sever-settings.json \
+    --volume /opt/factorio/server-whitelist.json:/factorio/data/server-whitelist.json \
+    --volume /opt/factorio/map-gen-settings.json:/factorio/data/map-gen-settings.json \
+    --volume /opt/factorio/map-settings.json:/factorio/data/map-settings.json \
     ghcr.io/rayschpp/factorio-docker:latest \
     --create saves/new-game.zip
 ```
@@ -19,8 +23,12 @@ docker run \
   --detached \
   --restart unless-stopped \
   --publish 34197:34197/udp \
-  --volume /data/factorio/saves:/factorio/saves \
-  --volume /data/factorio/mods:/factorio/mods \
+  --volume /opt/factorio/saves:/factorio/saves \
+  --volume /opt/factorio/mods:/factorio/mods \
+  --volume /opt/factorio/sever-settings.json:/opt/factorio/sever-settings.json \
+  --volume /opt/factorio/server-whitelist.json:/factorio/data/server-whitelist.json \
+  --volume /opt/factorio/map-gen-settings.json:/factorio/data/map-gen-settings.json \
+  --volume /opt/factorio/map-settings.json:/factorio/data/map-settings.json \
   ghcr.io/rayschpp/factorio-docker:latest 
 ```
 
@@ -36,19 +44,6 @@ Edit `data/server-settings.json`:
 - `visibility.lan` - Set to `true` for LAN servers
 - `game_password` - Server password
 - `max_players` - Player limit (0 = unlimited)
-
-### Public Server Authentication
-
-For public visibility, you need a Factorio.com auth token:
-
-1. Log in at https://factorio.com
-2. Go to Profile → Auth Token
-3. Copy token to `data/player-data.json`:
-   ```json
-   {
-     "token": "your-token-here"
-   }
-   ```
 
 ## Commands
 
